@@ -32,20 +32,20 @@ class  ProductManager  {
 
     addProduct = async ({ title, description, price, code, stock }) => {
        
-        // Obtener los productos actuales
+   
         const products = await this.getProducts();
     
-        // Verificar si ya existe un producto con el mismo código
+       
         const exists = products.find(product => product.code === code);
         if (exists) {
             console.log("codigo repetido ");
             
         }
     
-        // Generar ID nuevo con tu función
+        
         const newId = this.generateNewId(products);
     
-        // Crear nuevo producto
+        
         const newProduct = {
           id: newId,
           title,
@@ -56,13 +56,12 @@ class  ProductManager  {
           category,
         };
     
-        // Agregarlo al array
         products.push(newProduct);
     
-        // Guardar en el archivo
+        
         await fs.promises.writeFile(this.path, JSON.stringify(products, null, 2));
     
-        return newProduct; // Devolver el nuevo producto
+        return newProduct; 
       };
 
       getProductById = async(id) => {
